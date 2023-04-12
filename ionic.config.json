@@ -1,0 +1,7 @@
+{
+  "name": "ensiChatFront",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
