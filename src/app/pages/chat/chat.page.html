@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar color="s">
+    <ion-item>
+      <ion-avatar slot="start">
+        <img
+          alt="Silhouette of a person's head"
+          src="https://ionicframework.com/docs/img/demos/avatar.svg"
+        />
+      </ion-avatar>
+      <ion-label> {{ fromName }} </ion-label>
+    </ion-item>
+    <!-- <ion-title></ion-title> -->
+    <ion-buttons slot="end">
+      <ion-button fill="clear" (click)="signOut()">
+        <ion-icon name="log-out" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" [scrollEvents]="true">
+  <cdk-virtual-scroll-viewport minBufferPx="900" maxBufferPx="1350"  itemSize="50" class="viewport">
+    <ion-row class="ion-margin-vertical" *cdkVirtualFor="let message of messages$ | async">
+      <ion-col size="9" class="message" [offset]="message.myMsg ? 3 : 0"
+        [ngClass]="{ 'my-message': message.myMsg, 'other-message': !message.myMsg }">
+        <span>{{ message.msg }} </span>
+        <div class="time ion-text-right">
+          <br />{{ message.createdAt?.toMillis() | date:'short' }}
+        </div>
+      </ion-col>
+    </ion-row>
+  </cdk-virtual-scroll-viewport>
+  <ion-grid>
+
+    <!-- <ng-container *ngIf="messages$ | async as msgs">
+      <ion-row class="ion-margin-vertical" *ngFor="let message of msgs">
+        <ion-col size="9" class="message" [offset]="message.myMsg ? 3 : 0"
+          [ngClass]="{ 'my-message': message.myMsg, 'other-message': !message.myMsg }">
+          <span>{{ message.msg }} </span>
+          <div class="time ion-text-right">
+            <br />{{ message.createdAt?.toMillis() | date:'short' }}
+          </div>
+        </ion-col>
+      </ion-row>
+
+    </ng-container> -->
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="light">
+    <ion-row class="ion-align-items-center">
+      <ion-col size="10">
+        <ion-textarea
+          autoGrow="true"
+          rows="1"
+          maxLength="500"
+          [(ngModel)]="newMsg"
+        >
+        </ion-textarea>
+      </ion-col>
+      <ion-col size="2">
+        <ion-button
+          expand="block"
+          fill="clear"
+          color="primary"
+          [disabled]="newMsg === ''"
+          class="msg-btn"
+          (click)="sendMessage()"
+        >
+          <ion-icon
+            style="color: #7c96ab"
+            name="send"
+            slot="icon-only"
+          ></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "demo1-fbc6c": {
+      "hosting": {
+        "app": [
+          "demo1-fbc6c"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "demo1-fbc6c"
+  }
+}

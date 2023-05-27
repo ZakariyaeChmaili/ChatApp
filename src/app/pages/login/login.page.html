@@ -1,0 +1,77 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Login Page</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card class="ion-padding ion-margin-top">
+    <!-- <ion-card-header>
+      <ion-card-title>Card Title</ion-card-title>
+      <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+    </ion-card-header> -->
+
+    <ion-card-content>
+      <form [formGroup]="credentialForm">
+        <ion-input
+          class="ion-margin-vertical input-color"
+          label="Email"
+          label-placement="floating"
+          fill="solid"
+          placeholder="Ex:test@test.test"
+          formControlName="email"
+          autofocus="true"
+          clearInput="true"
+          color="medium"
+        ></ion-input>
+        <div
+          *ngIf="(email?.dirty || email?.touched) && email?.errors"
+          class="errors"
+        >
+          <span *ngIf="email?.errors?.['required']">Email is required</span>
+          <span *ngIf="email?.errors?.['email']">Email is invalid</span>
+        </div>
+
+        <ion-input
+          class="ion-margin-vertical"
+          label="Password"
+          label-placement="floating"
+          color="medium"
+          placeholder="******"
+          fill="solid"
+          type="password"
+          formControlName="password"
+          clearInput="true"
+        ></ion-input>
+
+        <div
+          *ngIf="(password?.dirty || password?.touched) && password?.errors"
+          class="errors"
+        >
+          <span *ngIf="password?.errors?.['required']"
+            >Password is required</span
+          >
+          <span *ngIf="password?.errors?.['minlength']"
+            >Password needs to be 6 characters</span
+          >
+        </div>
+      </form>
+    </ion-card-content>
+    <ion-row class="ion-justify-content-center">
+      <ion-button
+        color="s"
+        (click)="signUp()"
+        class="ion-margin-horizontal"
+        expand="block"
+        >Sing up</ion-button
+      >
+      <ion-button
+        color="p"
+        (click)="signIn()"
+        class="ion-margin-horizontal"
+        expand="block"
+        >Sing in</ion-button
+      >
+    </ion-row>
+  </ion-card>
+</ion-content>

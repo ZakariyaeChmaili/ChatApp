@@ -1,13 +1,23 @@
 import { Routes } from '@angular/router';
+import { AuthenticationGuard } from 'src/app/guards/authentication.guard';
+
+
 
 export const routes: Routes = [
-  {
-    path: 'home',
-    loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
-  },
+
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full',
+  },
+  {
+    path: 'login',
+    loadComponent: () => import('./pages/login/login.page').then( m => m.LoginPage),
+
+  },
+  {
+    path: 'chat',
+    loadComponent: () => import('./pages/chat/chat.page').then( m => m.ChatPage),
+    canActivate:[AuthenticationGuard]
   },
 ];
